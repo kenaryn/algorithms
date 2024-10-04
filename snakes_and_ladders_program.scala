@@ -15,9 +15,11 @@ def updatePlayerPos(playerPos: Int, roll: Int, gameboard: Array[Int], currentPla
     val nbPlayers = { print("Enter a number of players: "); readLine().toInt }
     val gameboard = new Array[Int](nbPlayers)
     var currentPlayer = 0
-    for turn <- 1 to nbPlayers do
-        
-        while playerPos != 63 do
+    
+    while !gameboard.contains(63) do
+        for turn <- 1 to nbPlayers do
+            println(turn)
+            println(s"Player ${currentPlayer + 1} is playing its turn.")
             val dice1 = throwDice()
             val dice2 = throwDice()
             val roll = dice1 + dice2
@@ -63,6 +65,7 @@ def updatePlayerPos(playerPos: Int, roll: Int, gameboard: Array[Int], currentPla
                 // Rotate the players.
                 if currentPlayer == nbPlayers then currentPlayer = 0
                 else currentPlayer += 1
-        end while
+        end for
+    end while
 
         println("You have reached the final destination. Congratulations!")
